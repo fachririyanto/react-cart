@@ -13,13 +13,15 @@ export default function ListCart({ isOpen }: ListCartProps) {
 
     let totalAmount = 0
 
-    totalAmount = useMemo(() => {
-        cart.forEach((item: CartProps) => {
-            totalAmount += item.price * item.qty
-        })
+    if (cart.length) {
+        totalAmount = useMemo(() => {
+            cart.forEach((item: CartProps) => {
+                totalAmount += item.price * item.qty
+            })
 
-        return totalAmount
-    }, [cart])
+            return totalAmount
+        }, [cart])
+    }
 
     return (
         <>
@@ -32,7 +34,7 @@ export default function ListCart({ isOpen }: ListCartProps) {
                 </header>
                 <div>
                     <ul>
-                        { cart.map((item: CartProps) => <Cart key={ item.id } { ...item } />) }
+                        { cart.length && cart.map((item: CartProps) => <Cart key={ item.id } { ...item } />) }
                     </ul>
                 </div>
                 <footer className="mt-6">
