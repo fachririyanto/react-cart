@@ -1,4 +1,4 @@
-import { useContext, useMemo } from 'react'
+import { useContext } from 'react'
 import { AppContext, CartContextProps } from '../../App/Provider'
 import Cart from './Cart'
 import { CartProps } from '../../Types/Cart'
@@ -14,13 +14,9 @@ export default function ListCart({ isOpen }: ListCartProps) {
     let totalAmount = 0
 
     if (cart.length) {
-        totalAmount = useMemo(() => {
-            cart.forEach((item: CartProps) => {
-                totalAmount += item.price * item.qty
-            })
-
-            return totalAmount
-        }, [cart])
+        cart.forEach((item: CartProps) => {
+            totalAmount += item.price * item.qty
+        })
     }
 
     return (
